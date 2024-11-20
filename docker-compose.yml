@@ -1,0 +1,31 @@
+version: '3'
+services:
+  shopware:
+    image: dockware/play:latest
+    ports:
+      - "80:80"
+    environment:
+      - SHOPWARE_DB_HOST=mysql
+      - SHOPWARE_DB_USER=shopware
+      - SHOPWARE_DB_PASSWORD=shopware
+      - SHOPWARE_DB_NAME=shopware
+    depends_on:
+      - mysql
+    volumes:
+      - .:/var/www/html/custom/plugins/Newsletter2go
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=shopware
+      - MYSQL_DATABASE=shopware
+      - MYSQL_USER=shopware
+      - MYSQL_PASSWORD=shopware
+    volumes:
+      - mysql-data:/var/lib/mysql
+    #ports:
+     # - "3306:3306"
+
+volumes:
+    mysql-data:
+        external: false

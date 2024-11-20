@@ -1,0 +1,9 @@
+version: '1'
+sync:
+  src: .
+  dst: /var/www/html/custom/plugins/Newsletter2go
+  sync_excludes:
+    - mysql-data
+    - docker-compose.yml
+    - docker-sync.yml
+    - .dockerignore
